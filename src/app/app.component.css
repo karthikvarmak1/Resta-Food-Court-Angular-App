@@ -1,0 +1,20 @@
+ .navbar-custom{
+    background-color: #ff6600;
+  }
+  .nav-item,.nav-link{
+      color: #ffffff;
+  }
+  .navbar-custom .navbar-nav .nav-item > a.router-link-active {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+  a{
+      text-decoration: none;
+  }
+  a.active{
+      color: white;
+      font-weight: bold;
+  } 
+  .button-logout{
+      border-radius: 4px;
+  }

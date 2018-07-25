@@ -1,0 +1,73 @@
+.fixed-top{
+    display: none;
+  }
+.bg {
+      /* height: -webkit-fill-available; */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-top:100px;
+      background-image: url("../../assets/images/dine22.jpg");
+      opacity:1;
+      height:100vh;
+      /* width:75vw; */
+      width:100%;
+      margin: 0;
+      padding: 0;
+  }
+.box{
+    position:relative;
+    height: fit-content;
+    /* width:max-content; */
+    width:100%;
+    font-family:Helvetica;
+    color:#fff;
+    background:rgba(0,0,0,1);
+    padding:30px;
+    /* opacity: 1; */
+    margin-top: 125px;
+    /* margin: 0 auto; */
+  }
+.box h1{
+    text-align:center;
+    margin:30px 0;
+    font-size:30px;
+  }
+
+.box input{
+    display:block;
+    width:300px;
+    margin:20px auto;
+    padding:15px;
+    background:rgba(0,0,0,0.2);
+    color:#fff;
+    border:0.5;
+    border-color:black;
+    /* border-color: red; */
+  }
+  
+.box form-group:focus,.box input:active,.box button:focus,.box button:active{
+    outline:none;
+  }
+  .box button{
+    background:#ff6600;
+    border:0;
+    color:#fff;
+    padding:10px;
+    font-size:20px;
+    width:300px;
+    margin:20px auto;
+    display:block;
+    cursor:pointer;
+  }
+  .box button:active{
+    background:#27ae60;
+  }
+  .box p{
+    font-size:14px;
+    text-align:center;
+  }
+  .box p span a{
+    cursor:pointer;
+    color:#fff;
+  }

@@ -1,0 +1,113 @@
+<div class="container">
+  <form #formRefAddItem="ngForm">
+    <div class="row form-group">
+      <label for="itemName" class="col-md-5">Item Name
+        <span class="text-danger required-sign">*</span>
+      </label>
+      <div class="col-md-7">
+        <input type="text" class="form-control" id="itemName" name="itemName" [(ngModel)]="itemName" required minlength="3" #nameRef="ngModel">
+        <div *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)" class="alert alert-danger">
+          <div *ngIf="nameRef.errors.required">
+            Item name is required.
+          </div>
+          <div *ngIf="nameRef.errors.minlength">
+            Item name must be at least 3 characters long.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label for="price" class="col-md-5">Price
+        <span class="text-danger required-sign">*</span>
+      </label>
+      <div class="col-md-7">
+        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="price" required #priceRef="ngModel">
+        <div *ngIf="priceRef.invalid && (priceRef.dirty || priceRef.touched)" class="alert alert-danger">
+          <div *ngIf="priceRef.errors.required">
+            Price is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label for="quantity" class="col-md-5">Quantity
+        <span class="text-danger required-sign">*</span>
+      </label>
+      <br/>
+      <div class="col-md-7">
+        <input type="radio" value="Half" name="quantity" [ngModel]="quantity" #quantityRef="ngModel" checked> Half
+        <input type="radio" value="Full" name="quantity" [ngModel]="quantity" #quantityRef="ngModel"> Full
+        <div *ngIf="quantityRef.invalid && (quantityRef.dirty || quantityRef.touched)" class="alert alert-danger">
+            <div *ngIf="quantityRef.errors.required">
+              quantity is required.
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label for="makingTime" class="col-md-5">Making Time (in minutes)
+        <span class="text-danger required-sign">*</span>
+      </label>
+      <div class="col-md-7">
+        <input type="number" class="form-control" id="makingTime" name="makingTime" [(ngModel)]="makingTime" required #makingTimeRef="ngModel">
+        <div *ngIf="makingTimeRef.invalid && (makingTimeRef.dirty || makingTimeRef.touched)" class="alert alert-danger">
+          <div *ngIf="makingTimeRef.errors.required">
+            Making time is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <label for="description" class="col-md-5">Description
+        <span class="text-danger required-sign">*</span>
+      </label>
+      <div class="col-md-7">
+        <input type="textarea" class="form-control" id="description" name="description" [(ngModel)]="description" required #descriptionRef="ngModel">
+        <div *ngIf="descriptionRef.invalid && (descriptionRef.dirty || descriptionRef.touched)" class="alert alert-danger">
+          <div *ngIf="descriptionRef.errors.required">
+            Description is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <label for="itemType" class="col-md-5">Item Type
+        <span class="text-danger required-sign">*</span>
+      </label>
+      <br/>
+      <div class="col-md-7">
+        <input type="radio" value="Veg" name="itemType" [ngModel]="itemType" #itemTypeRef="ngModel"> Veg
+        <input type="radio" value="Non-Veg" name="itemType" [ngModel]="itemType" #itemTypeRef="ngModel" checked> Non-Veg
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <label for="cuisine" class="col-md-5">Cuisine
+        <span class="text-danger required-sign">*</span>
+      </label>
+      <div class="col-md-7">
+        <select class="form-control" name="cuisine" [ngModel]="cuisines[0]">
+          <option *ngFor="let cuisine of cuisines" [value]="cuisine">
+            {{cuisine}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 col-md-offset-5">
+          <button type="submit" class="btn btn-block btn-primary btn-lg" [disabled]="formRefAddItem.invalid" (click)="onSubmit(formRefAddItem.value);formRefAddItem.reset()">
+              <!-- formRefAddItem.reset() -->
+            <span>Submit</span>
+          </button>
+          <button id="close_button2" type="button" class="btn btn-danger" [hidden]="true" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

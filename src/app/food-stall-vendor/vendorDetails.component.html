@@ -1,0 +1,56 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{title}}
+    </div>
+    <div class='panel-body'>
+
+
+
+        <table class='table table-striped table-condensed' *ngIf='vendorDetail'>
+            <tbody>
+                <!--TODO TASK : Should not display this ID after Complete development. Right now, It will be helpful for debugging -->
+                <tr>
+                    <td style="min-width: 10px;">Vendor Id</td>
+                    <td style="min-width: 10px;">{{vendorDetail.vendorId}}</td>
+                </tr>
+
+                <tr>
+                    <td style="min-width: 10px;">Vendor Name</td>
+                    <td style="min-width: 10px;">{{vendorDetail.vendorName}}</td>
+                </tr>
+                <tr>
+                    <td style="min-width: 10px;">Cuisine</td>
+                    <td style="min-width: 10px;">{{vendorDetail.cuisine}}</td>
+                </tr>
+                <tr>
+                    <td style="min-width: 60px;">Type</td>
+                    <td style="min-width: 10px;">{{vendorDetail.type}}</td>
+                </tr>
+                <tr>
+                    <td style="min-width: 10px;">Opening Time </td>
+                    <td style="min-width: 10px;">{{vendorDetail.openingtime}}</td>
+                </tr>
+                <tr>
+                    <td style="min-width: 10px;">Closing Time</td>
+                    <td style="min-width: 10px;">{{vendorDetail.closingtime}}</td>
+                </tr>
+                <tr>
+                    <td style="min-width: 10px;">Working Days</td>
+                    <td style="min-width: 10px;">{{vendorDetail.workingday}}</td>
+                </tr>
+                <tr>
+                    <td style="min-width: 10px;">GST</td>
+                    <td style="min-width: 10px;">{{vendorDetail.gst}}</td>
+                </tr>
+
+            </tbody>
+
+
+
+            <!--<a routerLink="['/addMenuCategory',vendorId]" class="btn btn-xs btn-primary">Add MenuCategory</a>-->
+            <td>
+                <a [routerLink]="['/addMenuCategory',vendorId]" class="btn btn-xs btn-primary">Add Menu Category</a>
+            </td>
+        </table>
+    </div>
+</div>

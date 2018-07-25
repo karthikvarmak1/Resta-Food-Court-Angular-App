@@ -1,0 +1,68 @@
+<div class="">
+    <!-- <img class="card-image" src="../../assets/images/biriyani1.jpg" width="100" height="100" style="display: none !important;"> -->
+    <div class='card-header text-center'>
+        <h3>Partner Login</h3>
+    </div>
+    <br/>
+    <div class="body">
+        <div class="top-content" style="position: relative; z-index: 0; background: none;">
+            <div class="container">
+                <div class="row-md-8">
+                </div>
+                <div class="row-md-offset-3">
+                    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+                        <div class="row">
+                            <div id="LISTED">
+                                Get listed on India’s leading online marketplace
+                                <br id="BR_2" /> for food orders
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <img alt="Logo" src="../../assets/images/food-logo.jpg">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div id="credentialscheck1" *ngIf="invalidCredentials && (partnerIdRef.dirty || partnerIdRef.touched)" class="alert alert-danger">
+                                        <div id="credentialscheck2" *ngIf="invalidCredentials">
+                                            Invalid username and password
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="partnerId" name="partnerId" placeholder="Partner Id.." [(ngModel)]="partnerId" required #partnerIdRef="ngModel"
+                                        value="test" />
+                                    <div id="partnerId" *ngIf="partnerIdRef.invalid && (partnerIdRef.dirty || partnerIdRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="partnerIdRef.errors.required">
+                                            Partner Id is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" id="password" name="password" placeholder="password.." [(ngModel)]="password" required #passwordRef="ngModel"
+                                        value="test" />
+                                    <div id="password" *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="passwordRef.errors.required">
+                                            Password is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <button type="submit" id="BUTTON_1" class="btn btn-block btn-primary btn-lg" [disabled]="formRef.invalid">
+                                                <span>Login</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-3">
+                            </div> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<label class="order-label">Current Orders</label>
+<hr class="order-border">
+
+<div class="row">
+  <div style="width : 27.5%;"></div>
+  <div class="width : 50%;">
+    <button type="button" routerLink="/previousorders" class="btn btn-xs text-white" style="background-color: #ff6600;">
+      <i class="fa fa-hand-o-left" aria-hidden="true"></i> Previous Orders</button>
+  </div>
+  <div style="width : 20%;"></div>
+</div>
+<br>
+<div *ngIf="orders.length>0">
+  <div *ngFor="let order of orders">
+    <div class="card" style="width: 39rem;">
+      <div class="card-body">
+        <div class="card-title">
+          <h4>Order Number: {{order.orderId}}</h4>
+          <h6>Email: {{order.email}}</h6>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-9">
+            <div *ngFor="let item of order.orderDetails" style="width:100%">
+              <div class="col-sm-12">
+                <span class="text-capitalize">
+                  <span style="color:green">{{item.count}}&nbsp;&nbsp;x&nbsp;&nbsp;</span>{{item.itemName}}</span>
+              </div>
+              <!-- <div class="col-sm-2"></div> -->
+              <!-- <div class="col-sm-3" style="text-align:center">{{item.price}}
+              </div> -->
+            </div>
+          </div>
+          <div class="col-sm-3" style="text-align : center; font-family: Arial, Helvetica, sans-serif; font-size : 2em">
+            <i class="fa fa-inr" aria-hidden="true"></i> {{order.toPayAmount}}
+          </div>
+        </div>
+        <hr>
+        <div class="container">
+          <div class="row" *ngIf="order.orderStatus=='pending'">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-xs btn-success" (click)="acceptOrder(order)">
+                <i class="fa fa-check" aria-hidden="true"></i> ACCEPT ORDER</button>
+            </div>
+            <div class="col-md-6">
+              <div class="text-right">
+                <button type="button" class="btn btn-xs text-white" (click)="rejectOrder(order)" style="background-color: #ff6600;">
+                  <i class="fa fa-times" aria-hidden="true"></i> REJECT ORDER</button>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="order.orderStatus=='accepted'">
+            <div class="col"></div>
+            <div class="col">
+              <button type="button" class="btn btn-xs btn-primary tbtn-lg ext-white" (click)="markOrderAsReady(order)">
+                <i class="fa fa-check" aria-hidden="true"></i> MARK ORDER AS READY</button>
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="orders.length==0">
+  <div class="card text-white mb-3" style="width: 39rem; height: 150px">
+    <div class="card-body">
+      <div class="card-title">
+      </div>
+      <div class="card-text">
+        <div class="card bg-primary text-white">
+          <div class="card-body">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> No pending orders.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

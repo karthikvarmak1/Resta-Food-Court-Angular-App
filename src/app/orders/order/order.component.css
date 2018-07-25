@@ -1,0 +1,62 @@
+#outer{
+    display: table;
+    width: 50%;
+    margin: 0 auto;
+}
+#inner{
+    display: table-cell;
+    vertical-align: middle;
+    height: 200px;
+    /* background-color: #ff6600; */
+    text-align: center;
+    color: black;
+    font-size: 30px;
+}
+.order-label{
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    display:inline-block;
+    -webkit-transform:scale(1.8,1.5); 
+}
+.order-border{
+    border-top: solid 3px black !important;
+    width: 46%;
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+a,a label {
+    cursor: pointer;
+}
+a.hover {
+    color: red;
+    text-decoration: none;
+}
+#home {
+    color: blue;
+    text-decoration: none;
+}
+#home.hover {
+    text-decoration: underline;
+}
+a.hover:hover {
+    text-decoration: underline;
+}
+#demo{
+   font-size: 40px; 
+}
+#order-ready{
+   font-size: 25px; 
+}
+#card-body-order-ready{
+    width: 50%;  
+}
+/* .card-body, rejected{
+    font-size: 15px;
+} */

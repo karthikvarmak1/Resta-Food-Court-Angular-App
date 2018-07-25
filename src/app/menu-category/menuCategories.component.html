@@ -1,0 +1,165 @@
+<div class='card card-inverse'>
+    <div class='panel-heading'>
+        <br>
+        <h1 class='text-center' style='color:blue'>Vendor Opertations Related Form</h1>
+    </div>
+    <div class='card-body'>
+        <form #formRef="ngForm">
+            <div class='row form-group'>
+                <label for="menuCategories" class="col">Choose menu categories
+                    <span class="text-danger required-sign">*</span>(you can chose multiple categories)</label>
+                <div class="col-md-7">
+                    <ss-multiselect-dropdown [options]="menuCategoriesOptions" [texts]="myTexts" name="menuCategoriesModel" [settings]="mySettings"
+                        [(ngModel)]="menuCategoriesModel" (ngModelChange)="onChange()">
+                    </ss-multiselect-dropdown>
+                </div>
+            </div>
+            <div class='row form-group'>
+                <label for="search" class="col-md-3">
+                    <b>Search by</b>
+                </label>
+                <div class='col-md-9'>
+                    <input type='text' class="form-control" name='titleFilter' [(ngModel)]='titleFilter' placeholder="Menu Category..." style="font-family: Impact, Haettenschweiler, sans-serif"
+                    />
+                </div>
+            </div>
+        </form>
+
+        <br/>
+
+        <table class='table table-hover table-condensed table-bordered' [mfData]="menuCategoriesSelectedOptions | menuCategoryFilter: titleFilter" #mf="mfDataTable"
+            [mfRowsOnPage]="5" *ngIf='menuCategoriesModel && menuCategoriesModel.length'>
+            <thead>
+                <tr>
+                    <th style="width: 0px;"></th>
+                    <th style="min-width: 40px;">Menu Category</th>
+                    <th style="width:20px;"> </th>
+                    <th style="width:20px;"> </th>
+                    <th style="width:20px;"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let menuCategory of mf.data'>
+                    <td>
+                        <input #cbMenuCatNumber type="checkbox" name='showMenuCat' value={{menuCategory.id}} (change)="selectedMenuCategories(cbMenuCatNumber)">
+                    </td>
+                    <td>
+                        {{ menuCategory.name | uppercase }}
+                    </td>
+                    <td>
+                        <!-- [routerLink]="['/addItem',menuCategory.id]" -->
+                        <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#addItemModal" (click)="sendCategoryName(menuCategory.name)">Add Item
+                            <i class="fa fa-plus-circle"></i>
+                        </button>
+                        <div class="modal fade" id="addItemModal" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add Item in
+                                            <span class="text-info">{{ categoryName }}</span> menu category</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body col-md-12">
+                                        <addMenuItem-form></addMenuItem-form>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <!-- <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary mr-auto" data-dismiss="modal">Submit</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button [routerLink]="['/viewitems',partnerId,menuCategory.name]" type="button" class="btn btn-xs btn-primary" data-toggle="modal"
+                            data-target="#menuItemsModal" (click)="sendCategoryName(menuCategory.name)">View Items
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-danger" (click)="deleteMenuCategory(menuCategory.id)">Delete
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="footer_id" colspan="10">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="col-lg-12 container">
+            <div class="row">
+                <div class="col-md-4 center-block">
+                </div>
+                <div class="col-md-8 center-block" *ngIf="isCategoriesSelected">
+                    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal">Add Custom Menu Category
+                        <i class="fa fa-plus-square"></i>
+                    </button>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Custom Category</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body col-md-12">
+                                    <form #formRef="ngForm">
+
+                                        <div class='row form-group'>
+                                            <label for="customCategoryName" class="col-md-5">
+                                                <b>Category Name</b>
+                                            </label>
+                                            <div class='col-md-7'>
+                                                <input type='text' class="form-control" name='customCategoryName' [(ngModel)]='customCategoryName' required #customCategoryNameRef="ngModel"
+                                                    style="font-family: Impact, Haettenschweiler, sans-serif" (keyup)="onKey($event)"
+                                                />
+                                                <div *ngIf="customCategoryNameRef.invalid && (customCategoryNameRef.dirty || customCategoryNameRef.touched)" class="alert alert-danger">
+                                                    <div *ngIf="customCategoryNameRef.errors.required">
+                                                        Category name is required.
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="customCategoryNameRef.valid && isCategoryListed">
+                                                    <div *ngIf="isCategoryListed">
+                                                        <span class="text-danger"> Category is already listed.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary mr-auto" data-dismiss="modal" (click)="onSubmittingCustomCategory()" [disabled]="formRef.invalid || isCategoryListed">Submit</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="deleteMultipleMenuCategories()" class="btn btn-xs btn-danger">Delete Multiple Categories
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                <div class="col-md-2 center-block">
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>

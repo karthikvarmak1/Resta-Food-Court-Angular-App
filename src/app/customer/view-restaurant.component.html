@@ -1,0 +1,204 @@
+<div class='panel panel-primary' style="font: normal normal 300 normal 30px / 16px, Open Sans, sans-serif;">
+  <div class='panel-heading text-grey'>
+  </div>
+  <div class='panel-body' data-spy="scroll" data-target="#myScrollspy" style="position: relative; height:100%; overflow-y: scroll;">
+
+    <div class="card bg-dark text-white text-center">
+      <img class="card-img" src="../../assets/images/dine16.jpg" alt="Card image" style="height: 300px;">
+      <div class="card-img-overlay" style="padding:0; background: rgba(0, 0, 0, 0.5);">
+        <div class="content" style="position: relative; color: #f1f1f1;width: 100%;padding: 40px;">
+          <h1 class="card-title">{{vendorDetails.vendorName}} </h1>
+          <h2 class="card-text"> {{vendorDetails.cuisine}}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 25px;  padding: 10px;">
+      <nav class="col-sm-2" id="myScrollspy" style="border-right:1px solid #e6e6e6">
+        <!--3april-->
+        <ul class="nav nav-pills flex-column nav-justified " style="top: 100px;position: sticky">
+          <div *ngFor="let restaurantMenuCategory of restaurantMenuCategories">
+            <li class="nav-item">
+              <!--3April-->
+              <a class="nav-link " style="text-align: right;" href="restaurant/{{vendorId}}#{{restaurantMenuCategory.menuCategoryName}}"
+                routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{restaurantMenuCategory.menuCategoryName}}</a>
+            </li>
+          </div>
+        </ul>
+      </nav>
+
+      <div class="col-sm-6">
+        <div class="row" *ngFor="let restaurantMenuCategory of restaurantMenuCategories">
+          <div style="margin-bottom: 10px;padding-left: 20px; width:100%" id={{restaurantMenuCategory.menuCategoryName}}>
+            <h2>
+              <b>{{restaurantMenuCategory.menuCategoryName}}</b>
+            </h2>
+            {{restaurantMenuCategory.menuItems.length}}&nbsp;Items
+
+            <div class="col-sm-12" style="margin-top: 15px;">
+              <div *ngFor="let menuItem of restaurantMenuCategory.menuItems">
+                <b>{{menuItem.itemName | uppercase}} </b>
+                <br> {{menuItem.description}}
+                <br>
+                <i class="fa fa-rupee"></i> {{menuItem.price}}
+                <button type="button" class="btn btn-success btn-sm float-right" (click)="addToCart($event,restaurantMenuCategory.menuCategoryName,menuItem.itemName)"
+                  data-toggle="modal" data-target="#myModal">Add To Cart
+                  <i class="fa fa-shopping-cart"></i>
+                </button>
+                <hr>
+              </div>
+              <hr style="margin-left:-10px;width:100%;border-top: 2px solid rgba(0, 0, 0, 0.97);">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id={{checkCart}}>
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">
+                <span style="color:blue">Info...</span>
+              </h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              This item already exists in your cart!!
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div *ngIf="cart.length == 0" style="top: 100px;position: sticky;margin-left:30px; ">
+          <h2>
+            <b> Cart Empty</b>
+          </h2>
+
+          <img class="card-img-top" src="../../assets/images/images.jpg" alt="Card image" style="width:250px;height:250px;margin-top: 15px;">
+          <p>Order some yummy items from the menu.</p>
+
+        </div>
+        <div *ngIf="cart.length > 0" style="width:300px;margin-left:20px;top: 100px;position: sticky">
+          <h2>
+            <b>Cart</b>
+          </h2>
+          {{cart.length}} Items
+          <div>
+            <!-- overflow-x: hidden;overflow-y: scroll;height:100px; -->
+            <div class="row" *ngFor="let item of cart" style="margin-top: 15px;margin-right:0px;margin-left:0px;">
+              <div class="col-sm-5" style="padding-right:0px;padding-left:0px;">
+                {{item.itemName}}
+
+              </div>
+              <div class="col-sm-3 float-right">
+                <angular2-number-picker [min]="1" [max]="6" [step]="1" [precision]="1" [inputDisabled]="true" (onChange)="onNumberChanged($event,item.itemName)"></angular2-number-picker>
+              </div>
+              <div class="col-sm-4" style="text-align:right">
+                {{item.price}}
+              </div>
+            </div>
+          </div>
+          <hr style="margin-left: 0px;border-top: 1px solid rgba(0, 0, 0, 0.97);">
+          <div class=row>
+            <div class="col-sm-9">
+              <b>Subtotal</b>
+            </div>
+            <div class="col-sm-3">
+              <b>Rs.{{cartValue}}</b>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal1" style="width:100%;margin-top:20px"
+              (click)="getAmountPayable()">
+              PROCEED TO CHECKOUT
+              <i class="fa fa-long-arrow-right"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal fade" id="myModal1">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+
+              <h3 class="modal-title">Order Details</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="row">
+                <!-- <div class="col-sm-1"></div> -->
+                <div class="col-sm-7">
+                  <span class="text-capitalize">
+                    <b>Items</b>
+                  </span>
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2">
+                  <b>Price</b>
+                </div>
+              </div>
+              <div class="row" *ngFor="let item of cart">
+                <!-- <div class="col-sm-1"></div> -->
+                <div class="col-sm-7">
+                  <span class="text-capitalize">
+                    <span style="color:green">{{item.count}}&nbsp;&nbsp;x&nbsp;&nbsp;</span>{{item.itemName}}</span>
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2" style="text-align:center">{{item.price}}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <!-- <div class="col-sm-1"></div> -->
+                <div class="col-sm-7">
+                  Subtotal</div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2" style="text-align:center"> {{cartValue}}</div>
+
+              </div>
+              <div class="row">
+                <!-- <div class="col-sm-1"></div> -->
+                <div class="col-sm-7">
+                  GST {{gst}} %</div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2" style="text-align:center"> {{gstAmount}}</div>
+              </div>
+              <br>
+              <div class="row">
+                <!-- <div class="col-sm-1"></div> -->
+                <div class="col-sm-6">
+                  <b>Total Amount </b>
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3" style="text-align:left; height : 20px">
+                  <b>Rs. {{amountPayable}}</b>
+                </div>
+
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <!-- style="justify-content:center;" -->
+                <button type="button" class="btn btn-success mr-auto" data-dismiss="modal">Edit Order</button>
+                <!-- <button type="button" class="btn btn-success" data-dismiss="modal" (click)=sendOrderToVendor(cart,amountPayable,vendorId)>Proceed to Payment</button> -->
+                <app-make-payment [cart]="cart" [amountPayable]="amountPayable" [vendorId]="vendorId"></app-make-payment>
+                <!-- {{stripePublishableKey}} -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

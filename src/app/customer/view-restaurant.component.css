@@ -1,0 +1,13 @@
+.nav-item a{
+    color: black;
+    font-weight: 400;
+  }
+  .nav-item a:hover{
+    color: #ff6600;
+  }
+  .nav-item a:active{
+    color: #ff6600;
+    border-right: 2px solid #ff6600;
+    border-radius: 0;
+  }
+  

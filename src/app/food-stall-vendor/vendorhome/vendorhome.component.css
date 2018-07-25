@@ -1,0 +1,29 @@
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    height: 200px;
+}
+
+.row{
+    padding-top: 160px;
+}
+
+.div_main {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../../assets/images/bg.jpg");
+    opacity:1;
+    width : 1350px;
+    height: 600px;
+}
+
+.btn-nav-match{
+    background: #ff6600;
+    color: white;
+}
+
+.card-title{
+    color: blue;
+}

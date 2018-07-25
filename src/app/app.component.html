@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+  <div class="container-fluid ">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/images/logo-resta-fav.ico" alt="logo">
+        <span style="color:aqua">Resta Food Court</span>
+      </a>
+    </div>
+
+    <ul class="navbar-nav navbar-right" *ngIf="isCustomer==true">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-home" aria-hidden="true"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login/vendor" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right" *ngIf="isAdmin==true">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/food-stall-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-home" aria-hidden="true"></i> Home
+        </a>
+      </li>
+      <li>
+        <button type="button" class="nav-link btn btn-xs" (click)="logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <span style="color: rgb(255, 81, 0)">
+            <i class="fa fa-sign-out"></i> Log out</span>
+        </button>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-right" *ngIf="isVendor==true">
+      <li>
+        <a class="nav-link" [routerLink]="['/vendorhome',vendorId]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-home" aria-hidden="true"></i> Home
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/menu-categories" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-bars" aria-hidden="true"></i> Menu Categories
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/currentorders" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-bars" aria-hidden="true"></i> Orders
+        </a>
+      </li>
+      <li *ngIf="!profileTabHide">
+        <a class="nav-link" [routerLink]="['/viewprofile',vendorId]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <i class="fa fa-user" aria-hidden="true"></i> My Profile
+        </a>
+      </li>
+      <li>
+        <button type="button" class="nav-link btn btn-xs" (click)="logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <span style="color: rgb(255, 81, 0)">
+            <i class="fa fa-sign-out"></i> Log out</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid" style="padding: 0px;margin-top:60px">
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

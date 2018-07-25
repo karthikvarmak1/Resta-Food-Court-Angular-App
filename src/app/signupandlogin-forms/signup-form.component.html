@@ -1,0 +1,135 @@
+<div class="card card-inverse w-90">
+
+    <div class="card-body">
+        <div class="top-content" style="position: relative; z-index: 0; background: none;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-5 text-box">
+                        <div class="left-side-text">
+                            <h1>Register with us</h1>
+                            <div class="description">
+                                <p class="medium-paragraph">
+                                    "Our partners are at the center of everything we do."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 box">
+                        <!-- <div class="r-form-1-top">
+                            <h1>Fill in the form below!</h1>
+                        </div> -->
+                        <div class="r-form-1-bottom">
+                            <form name="form" #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+                                <div class="form-group">
+                                    <!-- <i class="fa fa-user icon"></i> -->
+                                    <label class="sr-only" for="firstName">First Name</label>
+                                    <input type="text" name="firstName" placeholder="&#xf007; First Name..." minlength="3" class="firstName form-control" id="firstName"
+                                        [(ngModel)]="firstName" required #fNameRef="ngModel" style="font-family: Arial, FontAwesome">
+                                    <div *ngIf="fNameRef.invalid && (fNameRef.dirty || fNameRef.touched)" class="alert alert-danger">
+                                        <div class="error" *ngIf="fNameRef.errors.required">
+                                            First Name is required
+                                        </div>
+                                        <div *ngIf="fNameRef.errors.minlength">
+                                            First name must be at least 3 characters long
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="lastName">Last Name</label>
+                                    <input type="text" name="lastName" placeholder="&#xf007; Last Name..." style="font-family: Arial, FontAwesome" minlength="3" class="name form-control"
+                                        id="lastName" [(ngModel)]="lastName" required #lNameRef="ngModel">
+                                    <div *ngIf="lNameRef.invalid && (lNameRef.dirty || lNameRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="lNameRef.errors.required">
+                                            Last Name is required
+                                        </div>
+                                        <div *ngIf="lNameRef.errors.minlength">
+                                            Last name must be at least 3 characters long
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="email">Email</label>
+                                    <input type="email" name="email" placeholder="&#xf0e0; Email..." style="font-family: Arial, FontAwesome" class="email form-control"
+                                        id="email" [(ngModel)]="email" required #emailRef="ngModel" email>
+                                    <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="emailRef.errors.required">
+                                            Email is required
+                                        </div>
+                                        <div *ngIf="emailRef.errors && !emailRef.errors.required">
+                                            Please enter a valid email id
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="password">Password</label>
+                                    <input type="password" name="password" placeholder="&#xf084; Choose a Password..." style="font-family: Arial, FontAwesome" class="password form-control"
+                                        id="password" [(ngModel)]="password" required #passwordRef="ngModel">
+                                    <div *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="passwordRef.errors.required">
+                                            Password is required
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="confirmPassword">Confirm Password</label>
+                                    <input type="password" name="confirmPassword" placeholder="&#xf084; Confirm Password..." style="font-family: Arial, FontAwesome" class="confirmPassword form-control"
+                                        id="confirmPassword" [(ngModel)]="confirmPassword" required #confirmPasswordRef="ngModel"
+                                        (keyup)="onKey($event)">
+                                    <div *ngIf="confirmPasswordRef.invalid && (confirmPasswordRef.dirty || confirmPasswordRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="confirmPasswordRef.errors.required">
+                                            Please confirm Password
+                                        </div>
+                                    </div>
+                                    <div *ngIf="passwordMismatch && confirmPasswordRef.dirty">
+                                        <div *ngIf="passwordMismatch" style="color: red">
+                                            * Passwords mismatch
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="phone">Phone</label>
+                                    <input type="text" name="phone" placeholder="&#xf10b; Mobile..." class="phone form-control" id="phone" style="font-family: Arial, FontAwesome"
+                                        pattern="[1-9]{1}[0-9]{9}" [(ngModel)]="phone" required #phoneRef="ngModel">
+                                    <div *ngIf="phoneRef.invalid && (phoneRef.dirty || phoneRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="phoneRef.errors.required">
+                                            Phone Number is Required
+                                        </div>
+                                        <div *ngIf="phoneRef.errors.pattern">
+                                            Phone Number must be numeric and it should be 10 digits
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="location">Location</label>
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="&#xf041; Location..." style="font-family: Arial, FontAwesome"
+                                        [(ngModel)]="location" required #locationRef="ngModel">
+                                    <div *ngIf="locationRef.invalid && (locationRef.dirty || locationRef.touched)" class="alert alert-danger">
+                                        <div *ngIf="locationRef.errors.required">
+                                            Location is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-block btn-primary btn-lg" [disabled]="formRef.invalid">
+                                                <span>Sign Up</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

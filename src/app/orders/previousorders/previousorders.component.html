@@ -1,0 +1,77 @@
+<label class="order-label">Previous Orders</label>
+<hr class="order-border">
+
+<!-- <div class="row">
+  <div style="width : 25.5%;"></div>
+  <div class="width : 50%;">
+    <button type="button" class="btn btn-xs" style="background-color: #ff6600;">
+      <i class="fa fa-hand-o-left" aria-hidden="true"></i> Previous Orders</button>
+  </div>
+  <div style="width : 24%;"></div>
+</div>
+<br> -->
+<div *ngIf="orders.length>0">
+  <div *ngFor="let order of orders">
+    <div class="card" style="width: 39rem;">
+      <div class="card-body">
+        <div class="card-title">
+            <h4>Order Number: {{order.orderId}}</h4>
+            <h6>Email: {{order.email}}</h6>
+          <!-- <div class="row">
+            <div class="col-sm-6">
+                <h4>Order Number : {{order.orderId}}</h4>
+            </div>
+            <div class="col-sm-6" style="text-align: left">
+                <h6>From: {{order.email}}</h6>
+            </div>
+          </div> -->
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-9">
+            <div *ngFor="let item of order.orderDetails" style="width:100%">
+              <div class="col-sm-12">
+                <span class="text-capitalize">
+                  <span style="color:green">{{item.count}}&nbsp;&nbsp;x&nbsp;&nbsp;</span>{{item.itemName}}</span>
+              </div>
+              <!-- <div class="col-sm-2"></div> -->
+              <!-- <div class="col-sm-3" style="text-align:center">{{item.price}}
+              </div> -->
+            </div>
+          </div>
+          <div class="col-sm-3" style="text-align : center; font-family: Arial, Helvetica, sans-serif; font-size : 2em">
+            <i class="fa fa-inr" aria-hidden="true"></i> {{order.toPayAmount}}
+          </div>
+        </div>
+        <hr>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center">
+              <div class="card bg-success text-white">
+                <div class="card-body">
+                  <i class="fa fa-thumbs-up" aria-hidden="true"></i> This order was completed successfully.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="orders.length==0">
+  <div class="card text-white mb-3" style="width: 39rem; height: 150px">
+    <div class="card-body">
+      <div class="card-title">
+      </div>
+      <div class="card-text">
+        <div class="card bg-primary text-white">
+          <div class="card-body">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> No pending orders.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

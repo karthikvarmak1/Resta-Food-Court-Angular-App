@@ -1,0 +1,24 @@
+<!-- This form is for adding MenuCtaegory, It conatins a multi select dropdown
+<div class='panel panel-primary' style="height: 100%;">
+  <div class='panel-heading'>
+    Add Menu Category
+  </div>
+    <br/>
+    <div class='panel-body'>
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+      
+     
+      <div class="form-group" >
+        <label for="selectedMenuCategories">Category Name</label>
+        <select multiple class="form-control" name="selectedMenuCategories" [ngModel]="allMenuCategories.menuCategoryName"
+        required #selectedMenuCategories="ngModel" style="height:100px;">
+          <option *ngFor="let menuCategory of allMenuCategories" [value]="menuCategory.menuCategoryName" style="width:60px;">
+            {{menuCategory.menuCategoryName}}
+          </option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Submit</button>
+    </form>
+  </div>
+  </div> -->

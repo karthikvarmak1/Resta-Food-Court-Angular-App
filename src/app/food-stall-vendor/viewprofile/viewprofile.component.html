@@ -1,0 +1,40 @@
+<br>
+<div class="container" *ngIf="registrationDetail">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead"><h1>Profile</h1><hr></div>
+          </div>
+          <div class="row">
+			<div class="col-md-4 text-center">
+              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 class="only-bottom-margin">{{registrationDetail.firstName}} {{registrationDetail.lastName}}</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="text-muted">Partner Id:</span> {{registrationDetail.partnerId}}<br>
+                  <span class="text-muted">Email:</span> {{registrationDetail.email}}<br>
+                  <span class="text-muted">Mobile number:</span> {{registrationDetail.phone}}<br>
+                  <span class="text-muted">Location:</span> {{registrationDetail.location}}<br><br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr><button [routerLink]="['/profile',registrationDetail.partnerId]" class="btn btn-default pull-right btn-nav-match"><i class="fa fa-pencil"></i> Edit profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

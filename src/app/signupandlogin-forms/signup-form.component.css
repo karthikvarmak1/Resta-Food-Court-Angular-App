@@ -1,0 +1,94 @@
+  .fixed-top{
+    display: none;
+  }
+.bg {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("../../assets/images/dine22.jpg");
+      opacity:1;
+}
+
+  .box{
+    font-family:Helvetica;
+    color:black;
+    /* background-color:rgba(0,0,0,1); */
+    /* padding:15px; */
+  /* margin-top: 75px; */
+  }
+.text-box{
+  color:black;
+  margin-top: 130px;
+}
+.r-form-1-top{
+  text-align: center;
+  color: black;
+  margin-top: 10px;
+}
+.left-side-text{
+  /* background-color: black; */
+}
+  .box h1{
+    text-align:center;
+    margin:30px 0;
+    font-size:30px;
+  }
+  .box input{
+    display:block;
+    width:540px;
+    margin:20px auto;
+    padding:15px;
+    background:rgb(219, 216, 216);
+    color:black;
+    border:0;
+    font-family:Arial, Helvetica, sans-serif;
+    outline: none;
+  }
+  .box form-group:focus,.box input:active,.box button:focus,.box button:active{
+    outline:none;
+  }
+  .box button{
+    background:#ff6600;
+    border:0;
+    color:#fff;
+    padding:10px;
+    font-size:20px;
+    width:540px;
+    margin:20px auto;
+    display:block;
+    cursor:pointer;
+  }
+  .box button:active{
+    background:#27ae60;
+  }
+  .box p{
+    font-size:14px;
+    text-align:center;
+  }
+  .box p span a{
+    cursor:pointer;
+    color:#fff;
+  }
+
+.card-body{
+  background-image: url("../../assets/images/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* padding-top: 110px; */
+}
+/* Style the input container */
+/* .input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+} */
+
+/* Style the form icons */
+/* .icon {
+  padding: 15px;
+  background: dodgerblue;
+  min-width: 0px;
+  text-align: center;
+  margin:20px auto;
+} */

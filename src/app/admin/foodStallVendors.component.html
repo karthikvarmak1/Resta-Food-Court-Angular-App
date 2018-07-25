@@ -1,0 +1,128 @@
+<div class='panel panel-primary' *ngIf="vendorsList">
+    <div class='panel-heading'>
+        <h1 class='text-center' style='color:blue;'>{{title}}</h1>
+        <br>
+    </div>
+    <div class='panel-body'>
+        <div class='row form-group'>
+            <div class='col-md-3'></div>
+            <div class='col-md-6'>
+                <input class="form-control" type='text' [(ngModel)]='titleFilter' placeholder="&#xf002; Search by Vendor name..." style="font-family: Arial, FontAwesome"
+                />
+            </div>
+        </div>
+        <br/>
+
+        <table class='table table-hover table-striped table-condensed' [mfData]="vendorsList | vendorFilter: titleFilter" #mf="mfDataTable"
+            [mfRowsOnPage]="5">
+            <thead>
+                <tr>
+                    <th style="min-width: 30px;"></th>
+                    <th style="min-width: 80px;">
+                        <mfDefaultSorter by="vendorName">Vendor Name
+                            <i class="fa fa-sort"></i>
+                        </mfDefaultSorter>
+                    </th>
+                    <th style="min-width: 50px;">Cuisine</th>
+                    <th style="min-width: 50px;">Type</th>
+                    <th style="min-width: 50px;">
+                        <mfDefaultSorter by="openingtime">Opening Time
+                            <i class="fa fa-sort"></i>
+                        </mfDefaultSorter>
+                    </th>
+                    <th style="min-width: 50px;">
+                        <mfDefaultSorter by="closingtime">Closing Time
+                            <i class="fa fa-sort"></i>
+                        </mfDefaultSorter>
+                    </th>
+                    <th style="width:20px;"> </th>
+                    <th style="width:20px;"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let vendor of mf.data'>
+                    <td>
+                        <input #cbVendorNumber type="checkbox" name='showVendor' value={{vendor.vendorId}} (change)="selectedVendors(cbVendorNumber)">
+                    </td>
+                    <td style="color: blue">
+                        {{vendor.vendorName | uppercase }}
+                    </td>
+                    <td>{{vendor.cuisine}}</td>
+                    <!-- <td>{{vendor.workingday}}</td> -->
+                    <td>{{vendor.type}}</td>
+                    <td>{{vendor.openingtime}}</td>
+                    <td>{{vendor.closingtime}}</td>
+                    <!--  <td><a [routerLink]="['/editVendor',vendor.vendorId]" class="btn btn-xs btn-primary">Edit</a></td>-->
+                    <td>
+                        <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#myModal" (click)="fetchMenuCategoriesList(vendor.vendorId)">Menu Categories
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <div class="modal fade" id="{{listofcategories}}" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Menu categories</h3>
+                                        <button id="close_button2" type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body col-md-12">
+                                        <div *ngFor='let category of categoriesList'>
+                                            <button style="width:100%;" class="btn btn-xs btn-primary" [routerLink]="['/viewitems',partnerId,category]" (click)="closeDialog()">{{category}}
+                                            </button>
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="{{emptycategories}}" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+    
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" style="color: blue">Info</h3>
+                                            <button id="close_button3" type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+    
+                                        <!-- Modal body -->
+                                        <div class="modal-body col-md-12">
+                                          There are no menu categories added for this vendor..!!
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                    </td>
+                    <td>
+                        <button (click)="deleteVendor(vendor.vendorId)" class="btn btn-xs btn-danger">Delete
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="footer_id" colspan="10">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- <div>
+            <button (click)="deleteMultipleVendors()" class="btn btn-xs btn-danger">Delete
+                <i class="fa fa-trash"></i>
+            </button>
+        </div> -->
+    </div>
+</div>

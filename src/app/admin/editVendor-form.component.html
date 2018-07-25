@@ -1,0 +1,115 @@
+<div class="card card-inverse w-90 mb-3" *ngIf="vendorDetails">
+  <!-- style="background-color: rgb(197, 243, 237); border-color: rgb(10, 10, 10);"> -->
+  <!-- <img class="card-image" src="../../assets/images/biriyani1.jpg" width="100" height="100" style="display: none !important;"> -->
+  <div class="">
+    <br>
+    <h1 class='text-center' style='color:blue'>Editing Vendor Opertations Related Form</h1>
+    <!-- <div class="text-right">
+      <button><a class="nav-link" routerLink="/menu-categories" routerLinkActive="active"><b>Next ></b></a></button>
+    </div> -->
+  </div>
+  <br/>
+  <div class="card-body">
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+      <div class="row form-group">
+        <label for="vendorName" class="col-md-5">Name of the Restautrant
+          <span class="text-danger required-sign">*</span>
+        </label>
+        <div class="col-md-4">
+          <input type="text" class="form-control" id="vendorName" name="vendorName" [(ngModel)]="vendorDetails.vendorName" required
+            #vendorNameRef="ngModel">
+          <div *ngIf="vendorNameRef.invalid && (vendorNameRef.dirty || vendorNameRef.touched)" class="alert alert-danger">
+            <div *ngIf="vendorNameRef.errors.required">
+              Vendor Name is required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="form-group row">
+          <label for="image" class="col-md-5">Choose Image
+            <span class="text-danger required-sign">*</span>
+          </label>
+          <div class="col-md-4">
+            <input type="file" accept="image/*" id="image" name="image" [(ngModel)]="image" #imageRef="ngModel">
+          </div>
+        </div> -->
+
+      <div class="form-group row">
+        <label for="Cuisine" class="col">Choose Cuisine
+          <span class="text-danger required-sign">*</span>(you can chose multiple cuisines)</label>
+        <div class="col-md-7">
+          <ss-multiselect-dropdown [options]="CuisineOptions" [texts]="myTexts" name="cuisineModel" [settings]="mySettings" [(ngModel)]="cuisineModel"
+            (ngModelChange)="onChange($event)">
+          </ss-multiselect-dropdown>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="Type" class="col">Type of Restaurant
+          <span class="text-danger required-sign">*</span>
+        </label>
+        <div class="col-md-7">
+          <ss-multiselect-dropdown [options]="typeOptions" [texts]="myTexts" name="typeModel" [settings]="mySettings" [(ngModel)]="typeModel">
+          </ss-multiselect-dropdown>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="Workingday" class="col">Working Days
+          <span class="text-danger required-sign">*</span>
+        </label>
+        <div class="col-md-7">
+          <ss-multiselect-dropdown class="multiselect-button" [options]="workingDayOptions" [texts]="myTexts" name="workingDayModel"
+            [settings]="mySettings" [(ngModel)]="workingDayModel">
+          </ss-multiselect-dropdown>
+        </div>
+      </div>
+
+      <div class="form-inline row">
+        <label for="openingtime" class="col-md-5">Opening Time
+          <span class="text-danger required-sign">*</span>
+        </label>
+        <div class="col-md-7">
+          <ngb-timepicker [(ngModel)]="openingtime" [meridian]="meridian" name="openingtime"></ngb-timepicker>
+        </div>
+      </div>
+
+      <div class="form-inline row">
+        <label for="closingtime" class="col-md-5">Closing Time
+          <span class="text-danger required-sign">*</span>
+        </label>
+        <div class="col-md-7">
+          <ngb-timepicker [(ngModel)]="closingtime" [meridian]="meridian" name="closingtime"></ngb-timepicker>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="gst" class="col-md-5">GST %
+          <span class="text-danger required-sign">*</span>
+        </label>
+        <div class="col-md-4">
+          <input type="number" class="form-control" placeholder="Enter GST" id="gst" name="gst" [(ngModel)]="vendorDetails.gst" required
+            #gstRef="ngModel">
+          <div *ngIf="gstRef.invalid && (gstRef.dirty || gstRef.touched)" class="alert alert-danger">
+            <div *ngIf="gstRef.errors.required">
+              GST is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-6 col-md-offset-5">
+            <button type="submit" class="btn btn-block btn-primary btn-lg" [disabled]="formRef.invalid">
+              <span>
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> Update</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

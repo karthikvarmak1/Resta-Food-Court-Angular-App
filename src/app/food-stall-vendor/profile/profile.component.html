@@ -1,0 +1,115 @@
+<div class="container" *ngIf="registrationDetail">
+  <h1>Edit Profile</h1>
+  <hr>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      <div class="text-center">
+        <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
+          class="well my-drop-zone">
+          <img src="{{profileUrl}}" class="avatar img-circle" alt="avatar">
+        </div>
+        <h6>Upload a different photo...</h6>
+
+        <input type="file" ng2FileSelect [uploader]="uploader" />
+        <!-- (click)="check()" (change)="onChange()" -->
+        <br>
+        <div class="progress" style="">
+          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+        </div>
+        <br>
+        <button style="width:100%" type="button" class="btn btn-success btn-xs" (click)="upload()">
+          <span class="fa fa-upload"></span> Upload
+        </button>
+        <!-- <input type="file" class="form-control" (change)="uploadFileInput($event.target.files)"> -->
+      </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+      <!-- <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a>
+        <i class="fa fa-coffee"></i>
+        This is an
+        <strong>.alert</strong>. Use this to show important messages to the user.
+      </div> -->
+      <h3>Personal info</h3>
+
+      <form class="form-horizontal" role="form" #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Partner Id:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" value="{{registrationDetail.partnerId}}" [disabled]="true">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">First name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" name="firstName" type="text" [(ngModel)]="registrationDetail.firstName" required #fNameRef="ngModel">
+            <div *ngIf="fNameRef.invalid && (fNameRef.dirty || fNameRef.touched)" class="alert alert-danger">
+                <div class="error" *ngIf="fNameRef.errors.required">
+                    First Name is required
+                </div>
+                <div *ngIf="fNameRef.errors.minlength">
+                    First name must be at least 3 characters long
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" name="lastName" type="text" [(ngModel)]="registrationDetail.lastName" required #lNameRef="ngModel">
+            <div *ngIf="lNameRef.invalid && (lNameRef.dirty || lNameRef.touched)" class="alert alert-danger">
+                <div *ngIf="lNameRef.errors.required">
+                    Last Name is required
+                </div>
+                <div *ngIf="lNameRef.errors.minlength">
+                    Last name must be at least 3 characters long
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="email" value="{{registrationDetail.email}}" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Mobile:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="phone" pattern="[1-9]{1}[0-9]{9}" type="text" value="{{registrationDetail.phone}}" name="phone" [(ngModel)]="registrationDetail.phone" #phoneRef="ngModel" required>
+              <div *ngIf="phoneRef.invalid && (phoneRef.dirty || phoneRef.touched)" class="alert alert-danger">
+              <div *ngIf="phoneRef.errors.required">
+                  Phone Number is Required
+              </div>
+              <div *ngIf="phoneRef.errors.pattern">
+                  Phone Number must be numeric and it should be 10 digits
+              </div>
+          </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Location:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="location" type="text" [(ngModel)]="registrationDetail.location" required #locationRef="ngModel">
+              <div *ngIf="locationRef.invalid && (locationRef.dirty || locationRef.touched)" class="alert alert-danger">
+                  <div *ngIf="locationRef.errors.required">
+                      Location is required.
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input type="submit" class="btn btn-primary" value="Save Changes">
+            <span></span>
+            <input type="reset" class="btn btn-default" value="Cancel">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<hr>

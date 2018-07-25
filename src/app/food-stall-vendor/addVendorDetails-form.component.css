@@ -1,0 +1,9 @@
+ss-multiselect-dropdown > div.btn-group {
+    width: 100%;
+  }
+
+ss-multiselect-dropdown > div.btn-group > ul.dropdown-menu {
+    width: 100%;
+    color: black;
+  }
+

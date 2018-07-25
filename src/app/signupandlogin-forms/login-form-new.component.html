@@ -1,0 +1,28 @@
+<!-- <sd-navbar *ngIf="nav.visible"></sd-navbar> -->
+<!-- <div class="container"> -->
+<div class="bg">
+  <!--<img src="../../assets/images/dine16.jpg">-->
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <!-- <div class="col-sm-1"></div> -->
+      <div class="box" id="box">
+        <h1 style="color: blue;">Welcome</h1>
+        <input id="partnerId" name="partnerId" type="text" (keyup)="onKey($event)" class="form-control" [(ngModel)]="partnerId" placeholder="&#xf007;  Username..." style="font-family: Arial, FontAwesome;"/>
+        <input id="password" name="password" type="password" (keyup)="onKey($event)" class="form-control" [(ngModel)]="password" placeholder="&#xf084; Password..." style="font-family: Arial, FontAwesome;"/>
+        <h5 *ngIf="invalidCredentials" style="color: red; text-align: center; margin:30px 0;">
+            Invalid partner id and password
+        </h5>
+        <button (click)="login(partnerId, password)">Login</button>
+        <button (click)="connectWithGoogle()"><img src="../../assets/images/google.png"> Connect with Google</button>
+        <p>New vendor?
+          <span>
+            <a style="color: blue;" routerLink="/signup">Sign Up</a>
+          </span>
+        </p>
+      </div>
+      <!-- <div class="col-sm-1"></div> -->
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+</div>
